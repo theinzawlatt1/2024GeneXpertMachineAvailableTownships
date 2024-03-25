@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/filter.css">
+<link rel="stylesheet" href="css/nouislider.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/tailDT.js"></script>
+<script src="js/nouislider.min.js"></script>
+<script src="js/wNumb.js"></script>
+        <script src="data/StateRegionBoundary_0.js"></script>
+        <script src="data/TownshipBoundary_1.js"></script>
+        <script src="data/SevenGeneXpertMachineAvailableTownship1_2.js"></script>
+        <script src="data/SixGeneXpertMachineAvailableTownship1_3.js"></script>
+        <script src="data/FiveGeneXpertMachineAvailableTownship2_4.js"></script>
+        <script src="data/FourGeneXpertMachineAvailableTownship2_5.js"></script>
+        <script src="data/ThreeGeneXpertMachineAvailableTownship7_6.js"></script>
+        <script src="data/TwoGeneXpertMachineAvailableTownship13_7.js"></script>
+        <script src="data/OneGeneXpertMachineAvailableTownship51_8.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        function pop_StateRegionBoundary_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST'] !== null ? autolinker.link(feature.properties['ST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST_PCODE'] !== null ? autolinker.link(feature.properties['ST_PCODE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST_RG'] !== null ? autolinker.link(feature.properties['ST_RG'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST_MMR'] !== null ? autolinker.link(feature.properties['ST_MMR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PCode_V'] !== null ? autolinker.link(feature.properties['PCode_V'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CNR'] !== null ? autolinker.link(feature.properties['CNR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TSR_2021'] !== null ? autolinker.link(feature.properties['TSR_2021'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_StateRegionBoundary_0_0() {
+            return {
+                pane: 'pane_StateRegionBoundary_0',
+                opacity: 1,
+                color: 'rgba(180,180,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(127,111,205,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_StateRegionBoundary_0');
+        map.getPane('pane_StateRegionBoundary_0').style.zIndex = 400;
+        map.getPane('pane_StateRegionBoundary_0').style['mix-blend-mode'] = 'normal';
+        var layer_StateRegionBoundary_0 = new L.geoJson(json_StateRegionBoundary_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_StateRegionBoundary_0',
+            layerName: 'layer_StateRegionBoundary_0',
+            pane: 'pane_StateRegionBoundary_0',
+            onEachFeature: pop_StateRegionBoundary_0,
+            style: style_StateRegionBoundary_0_0,
+        });
+        bounds_group.addLayer(layer_StateRegionBoundary_0);
+        map.addLayer(layer_StateRegionBoundary_0);
+        function pop_TownshipBoundary_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST'] !== null ? autolinker.link(feature.properties['ST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST_PCODE'] !== null ? autolinker.link(feature.properties['ST_PCODE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DT'] !== null ? autolinker.link(feature.properties['DT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DT_PCODE'] !== null ? autolinker.link(feature.properties['DT_PCODE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS'] !== null ? autolinker.link(feature.properties['TS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS_PCODE'] !== null ? autolinker.link(feature.properties['TS_PCODE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS_MMR'] !== null ? autolinker.link(feature.properties['TS_MMR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PCode_V'] !== null ? autolinker.link(feature.properties['PCode_V'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GHP'] !== null ? autolinker.link(feature.properties['GHP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CNR_2022'] !== null ? autolinker.link(feature.properties['CNR_2022'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TSR_2022'] !== null ? autolinker.link(feature.properties['TSR_2022'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TSR_2022_%'] !== null ? autolinker.link(feature.properties['TSR_2022_%'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_TownshipBoundary_1_0() {
+            return {
+                pane: 'pane_TownshipBoundary_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.5)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(183,72,75,0.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_TownshipBoundary_1');
+        map.getPane('pane_TownshipBoundary_1').style.zIndex = 401;
+        map.getPane('pane_TownshipBoundary_1').style['mix-blend-mode'] = 'normal';
+        var layer_TownshipBoundary_1 = new L.geoJson(json_TownshipBoundary_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_TownshipBoundary_1',
+            layerName: 'layer_TownshipBoundary_1',
+            pane: 'pane_TownshipBoundary_1',
+            onEachFeature: pop_TownshipBoundary_1,
+            style: style_TownshipBoundary_1_0,
+        });
+        bounds_group.addLayer(layer_TownshipBoundary_1);
+        map.addLayer(layer_TownshipBoundary_1);
+        function pop_SevenGeneXpertMachineAvailableTownship1_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST'] !== null ? autolinker.link(feature.properties['ST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DT'] !== null ? autolinker.link(feature.properties['DT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS'] !== null ? autolinker.link(feature.properties['TS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS_MMR'] !== null ? autolinker.link(feature.properties['TS_MMR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GHP'] !== null ? autolinker.link(feature.properties['GHP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SevenGeneXpertMachineAvailableTownship1_2_0() {
+            return {
+                pane: 'pane_SevenGeneXpertMachineAvailableTownship1_2',
+                radius: 4.2,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(196,159,78,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SevenGeneXpertMachineAvailableTownship1_2');
+        map.getPane('pane_SevenGeneXpertMachineAvailableTownship1_2').style.zIndex = 402;
+        map.getPane('pane_SevenGeneXpertMachineAvailableTownship1_2').style['mix-blend-mode'] = 'normal';
+        var layer_SevenGeneXpertMachineAvailableTownship1_2 = new L.geoJson(json_SevenGeneXpertMachineAvailableTownship1_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SevenGeneXpertMachineAvailableTownship1_2',
+            layerName: 'layer_SevenGeneXpertMachineAvailableTownship1_2',
+            pane: 'pane_SevenGeneXpertMachineAvailableTownship1_2',
+            onEachFeature: pop_SevenGeneXpertMachineAvailableTownship1_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_SevenGeneXpertMachineAvailableTownship1_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SevenGeneXpertMachineAvailableTownship1_2);
+        map.addLayer(layer_SevenGeneXpertMachineAvailableTownship1_2);
+        function pop_SixGeneXpertMachineAvailableTownship1_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST'] !== null ? autolinker.link(feature.properties['ST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DT'] !== null ? autolinker.link(feature.properties['DT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS'] !== null ? autolinker.link(feature.properties['TS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS_MMR'] !== null ? autolinker.link(feature.properties['TS_MMR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GHP'] !== null ? autolinker.link(feature.properties['GHP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SixGeneXpertMachineAvailableTownship1_3_0() {
+            return {
+                pane: 'pane_SixGeneXpertMachineAvailableTownship1_3',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(180,180,255,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SixGeneXpertMachineAvailableTownship1_3');
+        map.getPane('pane_SixGeneXpertMachineAvailableTownship1_3').style.zIndex = 403;
+        map.getPane('pane_SixGeneXpertMachineAvailableTownship1_3').style['mix-blend-mode'] = 'normal';
+        var layer_SixGeneXpertMachineAvailableTownship1_3 = new L.geoJson(json_SixGeneXpertMachineAvailableTownship1_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SixGeneXpertMachineAvailableTownship1_3',
+            layerName: 'layer_SixGeneXpertMachineAvailableTownship1_3',
+            pane: 'pane_SixGeneXpertMachineAvailableTownship1_3',
+            onEachFeature: pop_SixGeneXpertMachineAvailableTownship1_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_SixGeneXpertMachineAvailableTownship1_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SixGeneXpertMachineAvailableTownship1_3);
+        map.addLayer(layer_SixGeneXpertMachineAvailableTownship1_3);
+        function pop_FiveGeneXpertMachineAvailableTownship2_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST'] !== null ? autolinker.link(feature.properties['ST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DT'] !== null ? autolinker.link(feature.properties['DT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS'] !== null ? autolinker.link(feature.properties['TS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS_MMR'] !== null ? autolinker.link(feature.properties['TS_MMR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GHP'] !== null ? autolinker.link(feature.properties['GHP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_FiveGeneXpertMachineAvailableTownship2_4_0() {
+            return {
+                pane: 'pane_FiveGeneXpertMachineAvailableTownship2_4',
+                radius: 3.8,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,26,28,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_FiveGeneXpertMachineAvailableTownship2_4');
+        map.getPane('pane_FiveGeneXpertMachineAvailableTownship2_4').style.zIndex = 404;
+        map.getPane('pane_FiveGeneXpertMachineAvailableTownship2_4').style['mix-blend-mode'] = 'normal';
+        var layer_FiveGeneXpertMachineAvailableTownship2_4 = new L.geoJson(json_FiveGeneXpertMachineAvailableTownship2_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FiveGeneXpertMachineAvailableTownship2_4',
+            layerName: 'layer_FiveGeneXpertMachineAvailableTownship2_4',
+            pane: 'pane_FiveGeneXpertMachineAvailableTownship2_4',
+            onEachFeature: pop_FiveGeneXpertMachineAvailableTownship2_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_FiveGeneXpertMachineAvailableTownship2_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_FiveGeneXpertMachineAvailableTownship2_4);
+        map.addLayer(layer_FiveGeneXpertMachineAvailableTownship2_4);
+        function pop_FourGeneXpertMachineAvailableTownship2_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST'] !== null ? autolinker.link(feature.properties['ST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DT'] !== null ? autolinker.link(feature.properties['DT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS'] !== null ? autolinker.link(feature.properties['TS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS_MMR'] !== null ? autolinker.link(feature.properties['TS_MMR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GHP'] !== null ? autolinker.link(feature.properties['GHP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_FourGeneXpertMachineAvailableTownship2_5_0() {
+            return {
+                pane: 'pane_FourGeneXpertMachineAvailableTownship2_5',
+                radius: 3.6,
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(240,246,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_FourGeneXpertMachineAvailableTownship2_5');
+        map.getPane('pane_FourGeneXpertMachineAvailableTownship2_5').style.zIndex = 405;
+        map.getPane('pane_FourGeneXpertMachineAvailableTownship2_5').style['mix-blend-mode'] = 'normal';
+        var layer_FourGeneXpertMachineAvailableTownship2_5 = new L.geoJson(json_FourGeneXpertMachineAvailableTownship2_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_FourGeneXpertMachineAvailableTownship2_5',
+            layerName: 'layer_FourGeneXpertMachineAvailableTownship2_5',
+            pane: 'pane_FourGeneXpertMachineAvailableTownship2_5',
+            onEachFeature: pop_FourGeneXpertMachineAvailableTownship2_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_FourGeneXpertMachineAvailableTownship2_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_FourGeneXpertMachineAvailableTownship2_5);
+        map.addLayer(layer_FourGeneXpertMachineAvailableTownship2_5);
+        function pop_ThreeGeneXpertMachineAvailableTownship7_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST'] !== null ? autolinker.link(feature.properties['ST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DT'] !== null ? autolinker.link(feature.properties['DT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS'] !== null ? autolinker.link(feature.properties['TS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS_MMR'] !== null ? autolinker.link(feature.properties['TS_MMR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GHP'] !== null ? autolinker.link(feature.properties['GHP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ThreeGeneXpertMachineAvailableTownship7_6_0() {
+            return {
+                pane: 'pane_ThreeGeneXpertMachineAvailableTownship7_6',
+                radius: 3.4,
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(16,121,240,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ThreeGeneXpertMachineAvailableTownship7_6');
+        map.getPane('pane_ThreeGeneXpertMachineAvailableTownship7_6').style.zIndex = 406;
+        map.getPane('pane_ThreeGeneXpertMachineAvailableTownship7_6').style['mix-blend-mode'] = 'normal';
+        var layer_ThreeGeneXpertMachineAvailableTownship7_6 = new L.geoJson(json_ThreeGeneXpertMachineAvailableTownship7_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ThreeGeneXpertMachineAvailableTownship7_6',
+            layerName: 'layer_ThreeGeneXpertMachineAvailableTownship7_6',
+            pane: 'pane_ThreeGeneXpertMachineAvailableTownship7_6',
+            onEachFeature: pop_ThreeGeneXpertMachineAvailableTownship7_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_ThreeGeneXpertMachineAvailableTownship7_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_ThreeGeneXpertMachineAvailableTownship7_6);
+        map.addLayer(layer_ThreeGeneXpertMachineAvailableTownship7_6);
+        function pop_TwoGeneXpertMachineAvailableTownship13_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST'] !== null ? autolinker.link(feature.properties['ST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DT'] !== null ? autolinker.link(feature.properties['DT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS'] !== null ? autolinker.link(feature.properties['TS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS_MMR'] !== null ? autolinker.link(feature.properties['TS_MMR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GHP'] !== null ? autolinker.link(feature.properties['GHP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_TwoGeneXpertMachineAvailableTownship13_7_0() {
+            return {
+                pane: 'pane_TwoGeneXpertMachineAvailableTownship13_7',
+                radius: 3.2,
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,60,199,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_TwoGeneXpertMachineAvailableTownship13_7');
+        map.getPane('pane_TwoGeneXpertMachineAvailableTownship13_7').style.zIndex = 407;
+        map.getPane('pane_TwoGeneXpertMachineAvailableTownship13_7').style['mix-blend-mode'] = 'normal';
+        var layer_TwoGeneXpertMachineAvailableTownship13_7 = new L.geoJson(json_TwoGeneXpertMachineAvailableTownship13_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_TwoGeneXpertMachineAvailableTownship13_7',
+            layerName: 'layer_TwoGeneXpertMachineAvailableTownship13_7',
+            pane: 'pane_TwoGeneXpertMachineAvailableTownship13_7',
+            onEachFeature: pop_TwoGeneXpertMachineAvailableTownship13_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_TwoGeneXpertMachineAvailableTownship13_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_TwoGeneXpertMachineAvailableTownship13_7);
+        map.addLayer(layer_TwoGeneXpertMachineAvailableTownship13_7);
+        function pop_OneGeneXpertMachineAvailableTownship51_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ST'] !== null ? autolinker.link(feature.properties['ST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DT'] !== null ? autolinker.link(feature.properties['DT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS'] !== null ? autolinker.link(feature.properties['TS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['TS_MMR'] !== null ? autolinker.link(feature.properties['TS_MMR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GHP'] !== null ? autolinker.link(feature.properties['GHP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_OneGeneXpertMachineAvailableTownship51_8_0() {
+            return {
+                pane: 'pane_OneGeneXpertMachineAvailableTownship51_8',
+                radius: 3.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,0.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,0,0,0.807843137254902)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_OneGeneXpertMachineAvailableTownship51_8');
+        map.getPane('pane_OneGeneXpertMachineAvailableTownship51_8').style.zIndex = 408;
+        map.getPane('pane_OneGeneXpertMachineAvailableTownship51_8').style['mix-blend-mode'] = 'normal';
+        var layer_OneGeneXpertMachineAvailableTownship51_8 = new L.geoJson(json_OneGeneXpertMachineAvailableTownship51_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_OneGeneXpertMachineAvailableTownship51_8',
+            layerName: 'layer_OneGeneXpertMachineAvailableTownship51_8',
+            pane: 'pane_OneGeneXpertMachineAvailableTownship51_8',
+            onEachFeature: pop_OneGeneXpertMachineAvailableTownship51_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_OneGeneXpertMachineAvailableTownship51_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_OneGeneXpertMachineAvailableTownship51_8);
+        map.addLayer(layer_OneGeneXpertMachineAvailableTownship51_8);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/OneGeneXpertMachineAvailableTownship51_8.png" /> One Gene Xpert Machine  Available Township (51)': layer_OneGeneXpertMachineAvailableTownship51_8,'<img src="legend/TwoGeneXpertMachineAvailableTownship13_7.png" /> Two Gene Xpert Machine  Available Township (13)': layer_TwoGeneXpertMachineAvailableTownship13_7,'<img src="legend/ThreeGeneXpertMachineAvailableTownship7_6.png" /> Three Gene Xpert Machine  Available Township (7)': layer_ThreeGeneXpertMachineAvailableTownship7_6,'<img src="legend/FourGeneXpertMachineAvailableTownship2_5.png" /> Four Gene Xpert Machine  Available Township (2)': layer_FourGeneXpertMachineAvailableTownship2_5,'<img src="legend/FiveGeneXpertMachineAvailableTownship2_4.png" /> Five Gene Xpert Machine  Available Township (2)': layer_FiveGeneXpertMachineAvailableTownship2_4,'<img src="legend/SixGeneXpertMachineAvailableTownship1_3.png" /> Six Gene Xpert Machine  Available Township (1)': layer_SixGeneXpertMachineAvailableTownship1_3,'<img src="legend/SevenGeneXpertMachineAvailableTownship1_2.png" /> Seven Gene Xpert Machine  Available Township (1)': layer_SevenGeneXpertMachineAvailableTownship1_2,'<img src="legend/TownshipBoundary_1.png" /> Township Boundary': layer_TownshipBoundary_1,'<img src="legend/StateRegionBoundary_0.png" /> State & Region Boundary': layer_StateRegionBoundary_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_SevenGeneXpertMachineAvailableTownship1_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['ST'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['ST']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SevenGeneXpertMachineAvailableTownship1_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_SixGeneXpertMachineAvailableTownship1_3.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['TS'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['TS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SixGeneXpertMachineAvailableTownship1_3'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_FiveGeneXpertMachineAvailableTownship2_4.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['TS'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['TS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_FiveGeneXpertMachineAvailableTownship2_4'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_FourGeneXpertMachineAvailableTownship2_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['TS'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['TS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_FourGeneXpertMachineAvailableTownship2_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_ThreeGeneXpertMachineAvailableTownship7_6.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['TS'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['TS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_ThreeGeneXpertMachineAvailableTownship7_6'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_TwoGeneXpertMachineAvailableTownship13_7.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['TS'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['TS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_TwoGeneXpertMachineAvailableTownship13_7'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_OneGeneXpertMachineAvailableTownship51_8.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['TS'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['TS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_OneGeneXpertMachineAvailableTownship51_8'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var mapDiv = document.getElementById('map');
+        var row = document.createElement('div');
+        row.className="row";
+        row.id="all";
+        row.style.height = "100%";
+        var col1 = document.createElement('div');
+        col1.className="col9";
+        col1.id = "mapWindow";
+        col1.style.height = "99%";
+        col1.style.width = "80%";
+        col1.style.display = "inline-block";
+        var col2 = document.createElement('div');
+        col2.className="col3";
+        col2.id = "menu";
+        col2.style.display = "inline-block";
+        mapDiv.parentNode.insertBefore(row, mapDiv);
+        document.getElementById("all").appendChild(col1);
+        document.getElementById("all").appendChild(col2);
+        col1.appendChild(mapDiv)
+        var Filters = {"ST": "str"};
+        function filterFunc() {
+          map.eachLayer(function(lyr){
+          if ("options" in lyr && "dataVar" in lyr["options"]){
+            features = this[lyr["options"]["dataVar"]].features.slice(0);
+            try{
+              for (key in Filters){
+                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
+                if (Filters[key] == "str" || Filters[key] == "bool"){
+                  var selection = [];
+                  var options = document.getElementById("sel_" + keyS).options
+                  for (var i=0; i < options.length; i++) {
+                    if (options[i].selected) selection.push(options[i].value);
+                  }
+                    try{
+                      if (key in features[0].properties){
+                        for (i = features.length - 1;
+                          i >= 0; --i){
+                          if (selection.indexOf(
+                          features[i].properties[key])<0
+                          && selection.length>0) {
+                          features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                  }
+                }
+                if (Filters[key] == "int"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (parseInt(features[i].properties[key])
+                          < sliderVals[0]
+                          || parseInt(features[i].properties[key])
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "real"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (features[i].properties[key]
+                          < sliderVals[0]
+                          || features[i].properties[key]
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "date"
+                  || Filters[key] == "datetime"
+                  || Filters[key] == "time"){
+                  try{
+                    if (key in features[0].properties){
+                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
+                      startdate = document.getElementById("dat_" +
+                        HTMLkey + "_date1").value.replace(" ", "T");
+                      enddate = document.getElementById("dat_" +
+                        HTMLkey + "_date2").value.replace(" ", "T");
+                      for (i = features.length - 1; i >= 0; --i){
+                        if (features[i].properties[key] < startdate
+                          || features[i].properties[key] > enddate){
+                          features.splice(i,1);
+                        }
+                      }
+                    }
+                  } catch(err){
+                  }
+                }
+              }
+            } catch(err){
+            }
+          this[lyr["options"]["layerName"]].clearLayers();
+          this[lyr["options"]["layerName"]].addData(features);
+        var i = 0;
+        layer_SevenGeneXpertMachineAvailableTownship1_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['ST'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['ST']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SevenGeneXpertMachineAvailableTownship1_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_SixGeneXpertMachineAvailableTownship1_3.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['TS'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['TS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SixGeneXpertMachineAvailableTownship1_3'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_FiveGeneXpertMachineAvailableTownship2_4.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['TS'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['TS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_FiveGeneXpertMachineAvailableTownship2_4'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_FourGeneXpertMachineAvailableTownship2_5.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['TS'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['TS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_FourGeneXpertMachineAvailableTownship2_5'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_ThreeGeneXpertMachineAvailableTownship7_6.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['TS'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['TS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_ThreeGeneXpertMachineAvailableTownship7_6'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_TwoGeneXpertMachineAvailableTownship13_7.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['TS'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['TS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_TwoGeneXpertMachineAvailableTownship13_7'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_OneGeneXpertMachineAvailableTownship51_8.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['TS'] !== null?String('<div style="color: #008bf8; font-size: 8pt; font-family: \'Pyidaungsu\', sans-serif;">' + layer.feature.properties['TS']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_OneGeneXpertMachineAvailableTownship51_8'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+          }
+          })
+        }
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_ST = document.createElement('div');
+            div_ST.id = "div_ST";
+            div_ST.className= "filterselect";
+            document.getElementById("menu").appendChild(div_ST);
+            sel_ST = document.createElement('select');
+            sel_ST.multiple = true;
+            sel_ST.size = 10;
+            sel_ST.id = "sel_ST";
+            var ST_options_str = "<option value='' unselected></option>";
+            sel_ST.onchange = function(){filterFunc()};
+            ST_options_str  += '<option value="Ayeyarwady">Ayeyarwady</option>';
+            ST_options_str  += '<option value="Bago">Bago</option>';
+            ST_options_str  += '<option value="Bago (East)">Bago (East)</option>';
+            ST_options_str  += '<option value="Bago (West)">Bago (West)</option>';
+            ST_options_str  += '<option value="Chin">Chin</option>';
+            ST_options_str  += '<option value="Kachin">Kachin</option>';
+            ST_options_str  += '<option value="Kayah">Kayah</option>';
+            ST_options_str  += '<option value="Kayin">Kayin</option>';
+            ST_options_str  += '<option value="Magway">Magway</option>';
+            ST_options_str  += '<option value="Mandalay">Mandalay</option>';
+            ST_options_str  += '<option value="Mon">Mon</option>';
+            ST_options_str  += '<option value="Nay Pyi Taw">Nay Pyi Taw</option>';
+            ST_options_str  += '<option value="Rakhine">Rakhine</option>';
+            ST_options_str  += '<option value="Sagaing">Sagaing</option>';
+            ST_options_str  += '<option value="Shan (East)">Shan (East)</option>';
+            ST_options_str  += '<option value="Shan (North)">Shan (North)</option>';
+            ST_options_str  += '<option value="Shan (South)">Shan (South)</option>';
+            ST_options_str  += '<option value="Tanintharyi">Tanintharyi</option>';
+            ST_options_str  += '<option value="Yangon">Yangon</option>';
+            sel_ST.innerHTML = ST_options_str;
+            div_ST.appendChild(sel_ST);
+            var lab_ST = document.createElement('div');
+            lab_ST.innerHTML = 'ST';
+            lab_ST.className = 'filterlabel';
+            div_ST.appendChild(lab_ST);
+            var reset_ST = document.createElement('div');
+            reset_ST.innerHTML = 'clear filter';
+            reset_ST.className = 'filterlabel';
+            reset_ST.onclick = function() {
+                var options = document.getElementById("sel_ST").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_ST.appendChild(reset_ST);
+        resetLabels([layer_SevenGeneXpertMachineAvailableTownship1_2,layer_SixGeneXpertMachineAvailableTownship1_3,layer_FiveGeneXpertMachineAvailableTownship2_4,layer_FourGeneXpertMachineAvailableTownship2_5,layer_ThreeGeneXpertMachineAvailableTownship7_6,layer_TwoGeneXpertMachineAvailableTownship13_7,layer_OneGeneXpertMachineAvailableTownship51_8]);
+        map.on("zoomend", function(){
+            resetLabels([layer_SevenGeneXpertMachineAvailableTownship1_2,layer_SixGeneXpertMachineAvailableTownship1_3,layer_FiveGeneXpertMachineAvailableTownship2_4,layer_FourGeneXpertMachineAvailableTownship2_5,layer_ThreeGeneXpertMachineAvailableTownship7_6,layer_TwoGeneXpertMachineAvailableTownship13_7,layer_OneGeneXpertMachineAvailableTownship51_8]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_SevenGeneXpertMachineAvailableTownship1_2,layer_SixGeneXpertMachineAvailableTownship1_3,layer_FiveGeneXpertMachineAvailableTownship2_4,layer_FourGeneXpertMachineAvailableTownship2_5,layer_ThreeGeneXpertMachineAvailableTownship7_6,layer_TwoGeneXpertMachineAvailableTownship13_7,layer_OneGeneXpertMachineAvailableTownship51_8]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_SevenGeneXpertMachineAvailableTownship1_2,layer_SixGeneXpertMachineAvailableTownship1_3,layer_FiveGeneXpertMachineAvailableTownship2_4,layer_FourGeneXpertMachineAvailableTownship2_5,layer_ThreeGeneXpertMachineAvailableTownship7_6,layer_TwoGeneXpertMachineAvailableTownship13_7,layer_OneGeneXpertMachineAvailableTownship51_8]);
+        });
+        </script>
+    </body>
+</html>
